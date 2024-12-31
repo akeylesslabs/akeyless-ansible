@@ -1,0 +1,122 @@
+{
+  "items": [
+    {
+      "item_name": "/dummy-item-1",
+      "item_id": 123456789,
+      "display_id": "dummy-display-id-1",
+      "item_type": "STATIC_SECRET",
+      "item_sub_type": "generic",
+      "item_metadata": "",
+      "item_tags": null,
+      "item_size": 0,
+      "last_version": 1,
+      "with_customer_fragment": false,
+      "is_enabled": true,
+      "public_value": "",
+      "certificates": "",
+      "protection_key_name": "",
+      "cert_issuer_signer_key_name": "",
+      "client_permissions": [
+        "read",
+        "list",
+        "update",
+        "delete",
+        "create",
+        "sra_transparently_connect"
+      ],
+      "certificate_issue_details": {},
+      "item_general_info": {
+        "cert_issue_details": {},
+        "dynamic_secret_producer_details": {
+          "user_ttl": ""
+        },
+        "rotated_secret_details": {},
+        "classic_key_details": {},
+        "secure_remote_access_details": {
+          "enable": true,
+          "use_internal_bastion": false,
+          "bastion_issuer": "/dummy-issuer-1",
+          "bastion_issuer_id": 987654321,
+          "ssh_password": true,
+          "ssh_user": "dummy-user",
+          "host": [
+            "dummy-host-1.example.com"
+          ],
+          "category": "cli"
+        },
+        "static_secret_info": {
+          "notify_on_change_event": false,
+          "format": "text",
+          "max_versions": 100
+        },
+        "display_metadata": "{\"fields\":[]}"
+      },
+      "is_access_request_enabled": false,
+      "access_request_status": "",
+      "delete_protection": false,
+      "creation_date": "2024-01-01T00:00:00Z",
+      "modification_date": "2024-01-01T00:00:00Z",
+      "access_date_display": "2024-01-01T00Z",
+      "gateway_details": null
+    },
+    {
+      "item_name": "/dummy-item-2",
+      "item_id": 987654321,
+      "display_id": "dummy-display-id-2",
+      "item_type": "DYNAMIC_SECRET",
+      "item_sub_type": "generic",
+      "item_metadata": "",
+      "item_tags": null,
+      "item_size": 0,
+      "last_version": 1,
+      "with_customer_fragment": false,
+      "is_enabled": true,
+      "public_value": "",
+      "certificates": "",
+      "protection_key_name": "",
+      "cert_issuer_signer_key_name": "",
+      "client_permissions": [
+        "read",
+        "list",
+        "update",
+        "delete",
+        "create",
+        "sra_transparently_connect"
+      ],
+      "certificate_issue_details": {},
+      "item_general_info": {
+        "cert_issue_details": {},
+        "dynamic_secret_producer_details": {
+          "producer_status": "ProducerDisconnected",
+          "failure_message": "",
+          "producer_type": "mysql",
+          "gw_cluster_id": 12345,
+          "k8s_dynamic_mode": false,
+          "user_ttl": ""
+        },
+        "rotated_secret_details": {},
+        "classic_key_details": {},
+        "password_policy": {
+          "password_length": 16
+        },
+        "static_secret_info": {}
+      },
+      "is_access_request_enabled": false,
+      "access_request_status": "",
+      "item_targets_assoc": [
+        {
+          "assoc_id": "dummy-assoc-id-1",
+          "target_name": "dummy-target-1",
+          "target_id": 54321,
+          "target_type": "mysql"
+        }
+      ],
+      "delete_protection": false,
+      "creation_date": "2024-01-01T00:00:00Z",
+      "modification_date": "2024-01-01T00:00:00Z",
+      "access_date_display": "2024-01-01T00Z",
+      "gateway_details": null
+    }
+  ],
+  "next_page": "d123asdasdasdad1"
+}
