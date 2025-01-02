@@ -13,7 +13,7 @@ class AkeylessAuthMethodK8s(AkeylessAuthMethodBase):
 
     def validate(self):
         super().validate()
-        self.validate_required_options(['k8s_service_account_token'])
+        self.validate_required_options(['k8s_service_account_token', 'k8s_auth_config_name'])
 
 
     def authenticate(self, api):

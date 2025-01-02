@@ -2,7 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 import pytest
-from akeyless import CreateSecret
+from akeyless import CreateSecret, UpdateSecretVal
 
 from ansible.plugins.loader import lookup_loader
 
@@ -11,20 +11,18 @@ from plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
 
 
 @pytest.fixture
-def create_secret_lookup():
-    return lookup_loader.get('create_static_secret')
+def update_secret_lookup():
+    return lookup_loader.get('update_static_secret_value')
 
 
-class TestCreateStaticSecretLookup(object):
+class TestUpdateSecretValueLookup(object):
 
-    def test_is_lookup_base(self, create_secret_lookup):
-        assert issubclass(type(create_secret_lookup), AkeylessLookupBase)
+    def test_is_lookup_base(self, update_secret_lookup):
+        assert issubclass(type(update_secret_lookup), AkeylessLookupBase)
 
-    def test_input_output(self, mock_api_client, create_secret_lookup, base_vars):
+    def test_input_putput(self, mock_api_client, update_secret_lookup, base_vars):
         opts = dict(
             token="t-123",
-            description="a great item",
-            type="generic",
             value="a value",
             format="json",
             urls=["a", "b"],
@@ -35,31 +33,32 @@ class TestCreateStaticSecretLookup(object):
             key="key1",
             uid_token="uid-123",
             multiline=True,
+            last_version=5,
+            keep_prev_version='true',
         )
 
         secret_name = "foo-bar"
 
-        create_secret_lookup.run(
+        update_secret_lookup.run(
             terms=[secret_name],
             akeyless_url=base_vars['akeyless_url'],
             **opts
         )
 
-        expected_create_secret = CreateSecret(
+        expected_input = UpdateSecretVal(
             name=secret_name,
-            description=opts.get('description'),
-            type=opts.get('type'),
             value=opts.get('value'),
             format=opts.get('format'),
             inject_url=opts.get('urls'),
             password=opts.get('password'),
             username=opts.get('username'),
             custom_field=opts.get('custom_fields'),
-            tags=opts.get('tags'),
             token=opts.get('token'),
-            protection_key=opts.get('key'),
-            multiline_value=opts.get('multiline'),
             uid_token=opts.get('uid_token'),
+            key=opts.get('key'),
+            last_version=5,
+            multiline=opts.get('multiline'),
+            keep_prev_version='true',
         )
 
-        mock_api_client.create_secret.assert_called_once_with(expected_create_secret)
+        mock_api_client.update_secret_val.assert_called_once_with(expected_input)

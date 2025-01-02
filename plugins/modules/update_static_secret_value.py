@@ -4,39 +4,20 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-  module: create_static_secret
+  module: update_static_secret_value
   version_added: 1.0.0
   extends_documentation_fragment:
     - connection
     - auth
     - token
+    - accessibility
   description:
-    - Creates a new static secret item.
+    - Update static secret value.
   options:
     name:
       description: Secret name.
       type: str
       required: true
-    description:
-      description: Description of the object.
-      type: str
-    accessibility:
-      description: In case of an item in a user's personal folder.
-      type: str
-      choices:
-        - regular
-        - personal
-      default: regular
-    delete_protection:
-        description: Protection from accidental deletion of this object, [true/false].
-        type: str
-    type:
-      description: Secret type.
-      type: str
-      choices:
-        - generic
-        - password
-      default: generic
     value:
       description: The secret value (relevant only for type 'generic').
       type: str
@@ -65,24 +46,26 @@ DOCUMENTATION = """
       description: Additional custom fields to associate with the item.
       type: list
       elements: str
-    tags:
-      description: Add tags attached to this object.
-      type: list
-      elements: str
     multiline:
       description: The provided value is a multiline value (separated by '\\n').
       type: bool
       default: False
-    change_event:
-      description: Trigger an event when a secret value changed [true/false] (Relevant only for Static Secret)
+    last_version:
+      description: The last version number before the update.
+      type: int
+    keep_prev_version:
+      description: Whether to keep previous version, options:[true, false]. If not set, use default according to account settings.
       type: str
 """
 
+
 import traceback
 
-from ansible.module_utils._text import to_native
+from ansible.module_utils.common.text.converters import to_native
+
 from plugins.module_utils._akeyless_module import AkeylessModule
 from plugins.module_utils._akeyless_helper import AkeylessHelper
+
 from akeyless import ApiException
 
 
@@ -90,20 +73,17 @@ def run_module():
 
     module_args = AkeylessModule.generate_argspec(
         name=dict(type='str', required=True),
-        description=dict(type='str', default=None),
         accessibility=dict(type='str', default='regular', choices=['regular', 'personal']),
-        delete_protection=dict(type='str', defulat=None),
-        type=dict(type='str', default='generic', choices=['generic', 'password']),
+        value=dict(type='str', default=None),
         format=dict(type='str', default='text', choices=['text', 'json', 'key-value']),
-        value=dict(type='str', defalt=None),
         urls=dict(type='list', elements='str', default=None),
         password=dict(type='str', default=None, no_log=True),
         username=dict(type='str', default=None),
         key=dict(type='str', default=None),
         custom_fields=dict(type='list', elements='str', default=None),
-        tags=dict(type='list', elements='str', default=None),
         multiline=dict(type='bool'),
-        change_event=dict(type='str', default=None),
+        last_version=dict(type='int', default=None),
+        keep_prev_version=dict(type='str', default=None),
     )
 
     module = AkeylessModule(
@@ -118,22 +98,21 @@ def run_module():
             auth_response = module.authenticate()
             module.params['token'] = auth_response.token
 
-        body = AkeylessHelper.build_create_secret_body(module.params.get("name"), module.params)
+        body = AkeylessHelper.build_update_secret_val_body(module.params.get('name'), module.params)
 
-        module.api_client.create_secret(body)
+        module.api_client.update_secret_val(body)
     except ApiException as e:
         module.fail_json(
-            msg=AkeylessHelper.build_api_err_msg(e, "create_secret"),
+            msg=AkeylessHelper.build_api_err_msg(e, "update_secret_val"),
             exception=traceback.format_exc()
         )
     except Exception as e:
         module.fail_json(
-            msg="Unknown exception trying to run create_secret: " + to_native(e),
+            msg="Unknown exception trying to run update_secret_val: " + to_native(e),
             exception=traceback.format_exc()
         )
 
     module.exit_json(changed=True)
-
 
 def main():
     run_module()

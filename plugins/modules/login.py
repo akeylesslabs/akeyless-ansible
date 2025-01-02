@@ -16,6 +16,29 @@ DOCUMENTATION = """
     - auth
 """
 
+EXAMPLES = r'''
+- name: Login with API Key
+  login:
+    akeyless_url: https://my.gw:8000/api/v2
+    access_type: api_key
+    access_id: {{ access_id }} 
+    access_key: {{ access_key }} 
+  register: login_res
+  
+- name: Display the temp token
+  debug:
+    msg:
+      - "Secret Value: {{ login_res.token }}"
+
+- name: Login with K8S
+  login:
+    akeyless_url: https://my.gw:8000/api/v2
+    access_type: k8s
+    k8s_service_account_token: {{ k8s_service_account_token }} 
+    k8s_auth_config_name: {{ k8s_auth_config_name }} 
+  register: login_res
+'''
+
 
 import traceback
 from plugins.module_utils._akeyless_module import AkeylessModule
@@ -37,7 +60,7 @@ def run_module():
     except Exception as e:
         module.fail_json(msg=to_native(e), exception=traceback.format_exc())
 
-    module.exit_json(changed=True, token=response.token)
+    module.exit_json(changed=True, data=response.to_dict())
 
 
 def main():

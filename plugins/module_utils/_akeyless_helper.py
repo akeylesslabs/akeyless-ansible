@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import akeyless
-from akeyless import GetSSHCertificate
+from akeyless import GetSSHCertificate, UpdateSecretVal, GetSecretValue
 
 from akeyless.models.create_secret import CreateSecret
 from akeyless.models.get_dynamic_secret_value import GetDynamicSecretValue
@@ -11,7 +11,6 @@ from akeyless.models.get_pki_certificate import GetPKICertificate
 from akeyless.models.export_classic_key import ExportClassicKey
 
 from typing import Type
-
 
 
 class AkeylessHelper:
@@ -106,6 +105,47 @@ class AkeylessHelper:
             multiline_value=params.get("multiline"),
             password=params.get("password"),
             protection_key=params.get("key"),
+            token=params.get("token"),
+            uid_token=params.get("uid_token"),
+        )
+
+    @staticmethod
+    def build_update_secret_val_body(name, params):
+        """
+        build the body for updaing a secret value
+
+        :param name: Secret Name
+        :param params: Optional input parameters
+        """
+        return UpdateSecretVal(
+            name=name,
+            accessibility=params.get("accessibility"),
+            custom_field=params.get("custom_fields"),
+            last_version=params.get("last_version"),
+            keep_prev_version=params.get("keep_prev_version"),
+            format=params.get("format"),
+            username=params.get("username"),
+            value=params.get("value"),
+            inject_url=params.get("urls"),
+            password=params.get("password"),
+            key=params.get("key"),
+            token=params.get("token"),
+            uid_token=params.get("uid_token"),
+            multiline=params.get("multiline"),
+        )
+
+    @staticmethod
+    def build_get_secret_val_body(names, params):
+        """
+        build the body for gettng a secret value
+
+        :param names: List of Secret Names
+        :param params: Optional input parameters
+        """
+        return GetSecretValue(
+            names=names,
+            accessibility=params.get("accessibility"),
+            version=params.get("version"),
             token=params.get("token"),
             uid_token=params.get("uid_token"),
         )

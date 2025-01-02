@@ -2,7 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-  name: create_static_secret
+  name: update_static_secret_value
   version_added: 1.0.0
   extends_documentation_fragment:
     - connection
@@ -10,25 +10,12 @@ DOCUMENTATION = """
     - token
     - accessibility
   description:
-    - Creates a new static secret item.
+    - Update static secret value.
   options:
     _terms:
       description: Secret name.
       type: str
       required: true
-    description:
-      description: Description of the object.
-      type: str
-    delete_protection:
-        description: Protection from accidental deletion of this object, [true/false].
-        type: str
-    type:
-      description: Secret type.
-      type: str
-      choices:
-        - generic
-        - password
-      default: generic
     value:
       description: The secret value (relevant only for type 'generic').
       type: str
@@ -57,16 +44,15 @@ DOCUMENTATION = """
       description: Additional custom fields to associate with the item.
       type: list
       elements: str
-    tags:
-      description: Add tags attached to this object.
-      type: list
-      elements: str
     multiline:
       description: The provided value is a multiline value (separated by '\\n').
       type: bool
       default: False
-    change_event:
-      description: Trigger an event when a secret value changed [true/false] (Relevant only for Static Secret)
+    last_version:
+      description: The last version number before the update.
+      type: int
+    keep_prev_version:
+      description: Whether to keep previous version, options:[true, false]. If not set, use default according to account settings.
       type: str
 """
 
@@ -94,9 +80,9 @@ class LookupModule(AkeylessLookupBase):
                 auth_response = self.authenticate()
                 self.set_option('token', auth_response.token)
 
-            body = AkeylessHelper.build_create_secret_body(name, self._options)
-            self.api_client.create_secret(body)
+            body = AkeylessHelper.build_update_secret_val_body(name, self._options)
+            self.api_client.update_secret_val(body)
         except ApiException as e:
-            raise AnsibleError(AkeylessHelper.build_api_err_msg(e, "create_secret"))
+            raise AnsibleError(AkeylessHelper.build_api_err_msg(e, "update_secret_val"))
         except Exception as e:
-            raise AnsibleError("Unknown exception trying to run create_secret: " + str(e))
+            raise AnsibleError("Unknown exception trying to run update_secret_val: " + str(e))

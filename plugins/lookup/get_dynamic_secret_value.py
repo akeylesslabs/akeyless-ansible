@@ -2,7 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 
-DOCUMENTATION = r"""
+DOCUMENTATION = r'''
   name: get_dynamic_secret_value
   version_added: 1.0.0
   extends_documentation_fragment:
@@ -29,7 +29,20 @@ DOCUMENTATION = r"""
       description: Optional arguments as key=value pairs or JSON strings, e.g. ['arg1=value1', 'arg2=value2'].
       type: list
       elements: str
-"""
+'''
+
+EXAMPLES = r'''
+- name: Get MySQL dynamic secret value
+  set_fact:
+    response: "{{ lookup('get_dynamic_secret_value', 'MyMySqlDynamicSecret', akeyless_url='https://my.gw:8000/api/v2', token='t-1233asdsad',
+        target='MyMySqlTarget', args=['common_name=bar']) }}"
+
+- name: Display the results
+  debug:
+    msg:
+      - "Username: {{ response.user }}"
+      - "Password: {{ response.password }}"
+'''
 
 
 from plugins.module_utils._akeyless_helper import AkeylessHelper

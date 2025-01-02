@@ -2,17 +2,36 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 
-DOCUMENTATION = r"""
+DOCUMENTATION = r'''
   name: login
   version_added: 1.0.0
-  author:
-    - Akeyless
   description:
     - Performs a login operation against Akeyless, returning a temp token.
   extends_documentation_fragment:
     - connection
     - auth
-"""
+'''
+
+EXAMPLES = r'''
+- name: Login with API Key
+  set_fact:
+    login_res: "{{ lookup('login',  akeyless_url='https://api.akeyless.io', access_type='api_key', access_id='p-12345667', access_key='the-access-key') }}"
+
+- name: Display the temp token
+  debug:
+    msg:
+      - "Secret Value: {{ login_res.token }}"
+
+- name: Login with k8s
+  set_fact:
+    login_res: "{{ lookup('login',  akeyless_url='https://my.gw:8000/api/v2', access_type='k8s', access_id='p-12345667',
+        k8s_service_account_token='service-account-token', k8s_auth_config_name='auth-conf-name') }}"
+
+- name: Display the temp token
+  debug:
+    msg:
+      - "Secret Value: {{ login_res.token }}"
+'''
 
 
 
@@ -40,4 +59,4 @@ class LookupModule(AkeylessLookupBase):
         except Exception as e:
             raise AnsibleError("Unknown exception trying to run akeyless auth: " + str(e))
 
-        return [response.token]
+        return [response]

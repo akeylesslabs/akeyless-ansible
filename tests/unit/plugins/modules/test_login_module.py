@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 
-from unittest import mock
+from akeyless import AuthOutput
 
 import plugins.modules.login as login_module
 from tests.unit.plugins.modules.test_modules_utils import  set_module_args, AnsibleExitJson, AnsibleFailJson
@@ -20,7 +20,7 @@ class TestLoginModule(object):
             login_module.main()
 
     def test_ensure_args_passed(self, mock_module_helper):
-        with patch('plugins.modules.login.AkeylessModule.authenticate', return_value=mock.Mock(token="mock_token")):
+        with patch('plugins.modules.login.AkeylessModule.authenticate', return_value=AuthOutput(token="mock_token")):
             set_module_args({
                 'akeyless_url': "https://xxx.com",
             })
@@ -30,4 +30,4 @@ class TestLoginModule(object):
 
             result = e.value.args[0]
             assert result['changed'] is True
-            assert result['token'] == "mock_token"
+            assert result['data']['token'] == "mock_token"
