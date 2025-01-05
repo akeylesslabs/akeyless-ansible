@@ -31,7 +31,7 @@ class TestListItemsModule(object):
                 filterxxxx="foobar",
             ))
             list_items_module.main()
-        assert "filterxxxx Supported parameters include" in str(e.value)
+        assert "filterxxxx. Supported parameters include" in str(e.value)
 
 
     def test_raise_api_error(self, mock_api_client, mock_module_helper):

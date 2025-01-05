@@ -27,7 +27,8 @@ class TestLoginLookup(object):
 
         result = login_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
 
-        assert result == ["mock_token"]
+        assert len(result) == 1
+        assert result[0].token == "mock_token"
         login_lookup.authenticate.assert_called_once()
 
 

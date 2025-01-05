@@ -22,10 +22,11 @@ class TestCreateStaticSecretModule(object):
             set_module_args(dict(
                 akeyless_url= 'http://api.akeyless.test',
                 token='t-123asdasd',
+                name="ss",
                 filter="foobar",
             ))
             create_secret_module.main()
-        assert "filter Supported parameters include" in str(e.value)
+        assert "filter. Supported parameters include" in str(e.value)
 
     def test_raise_api_error(self, mock_api_client, mock_module_helper):
         opts = dict(
@@ -51,7 +52,7 @@ class TestCreateStaticSecretModule(object):
             token='t-123asdasd',
             name="secret-name",
             description="sdadsd",
-            delete_protection=True,
+            delete_protection='true',
             type="password",
             value="very secret val",
             format="key-value",

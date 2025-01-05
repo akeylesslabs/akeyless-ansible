@@ -44,7 +44,7 @@ class TestAuthK8s(object):
         assert isinstance(auth_k8s, AkeylessAuthMethodK8s)
         assert issubclass(AkeylessAuthMethodK8s, AkeylessAuthMethodBase)
 
-    def test_validation(self, auth_k8s, access_id, k8s_service_account_token):
+    def test_validation(self, auth_k8s, access_id, k8s_service_account_token, k8s_auth_config_name):
         with pytest.raises(ValueError, match="access_id is required for the AkeylessAuthMethodK8s auth method"):
             auth_k8s.validate()
 
@@ -54,6 +54,12 @@ class TestAuthK8s(object):
             auth_k8s.validate()
 
         auth_k8s.options['k8s_service_account_token'] = k8s_service_account_token
+
+        with pytest.raises(ValueError, match="k8s_auth_config_name is required for the AkeylessAuthMethodK8s auth method"):
+            auth_k8s.validate()
+
+        auth_k8s.options['k8s_auth_config_name'] = k8s_auth_config_name
+
 
         auth_k8s.validate()
 

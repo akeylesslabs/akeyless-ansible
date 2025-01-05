@@ -11,7 +11,8 @@ import plugins.modules.update_static_secret_value as update_secret_val_module
 
 
 
-class TestUpdateSecretValueModule(object):
+class \
+        TestUpdateSecretValueModule(object):
 
     def test_module_fail_when_required_args_missing(self, mock_module_helper):
         with pytest.raises(AnsibleFailJson):
@@ -23,10 +24,11 @@ class TestUpdateSecretValueModule(object):
             set_module_args(dict(
                 akeyless_url= 'http://api.akeyless.test',
                 token='t-123asdasd',
+                name= "ss",
                 someparam="foobar",
             ))
             update_secret_val_module.main()
-        assert "someparam Supported parameters include" in str(e.value)
+        assert "someparam. Supported parameters include" in str(e.value)
 
 
     def test_raise_api_error(self, mock_api_client, mock_module_helper):
