@@ -18,6 +18,8 @@ It allows you to securely manage secrets and access them within your Ansible pla
 
 ## Installation
 
+### Using the repository directly
+
 1. Clone the repository:
    ```sh
    git clone git@github.com:akeylesslabs/akeyless-ansible.git
@@ -26,7 +28,13 @@ It allows you to securely manage secrets and access them within your Ansible pla
    ```sh
    pip install -r requirements.txt
 
-## Usage
+### Using the python package programmatically
+```sh
+pip install akeyless-ansible
+```
+   
+
+## Usage in playbook
 
 Example `login` with k8s using a lookup plugin:
 ```yaml
@@ -92,7 +100,7 @@ Here is an example of how to use the `get_static_secret_value` module in your pl
 
 ### Running unit tests
 ```sh
-pytest tests
+python -m pytest
 ```
 
 
