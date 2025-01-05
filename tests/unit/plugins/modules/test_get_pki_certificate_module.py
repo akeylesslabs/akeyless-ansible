@@ -5,7 +5,7 @@ __metaclass__ = type
 import pytest
 from akeyless import ApiException, GetPKICertificateOutput, GetPKICertificate
 
-import plugins.modules.get_pki_certificate as get_pki_certificate_module
+import akeyless_ansible.plugins.modules.get_pki_certificate as get_pki_certificate_module
 from tests.unit.conftest import fixture_loader
 from tests.unit.plugins.modules.test_modules_utils import set_module_args, AnsibleExitJson, AnsibleFailJson
 

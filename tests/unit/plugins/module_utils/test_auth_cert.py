@@ -5,9 +5,8 @@ __metaclass__ = type
 import pytest
 from akeyless import Auth, AuthOutput
 
-from plugins.module_utils._auth_method_api_key import AkeylessAuthMethodApiKey
-from plugins.module_utils._auth_method_base import AkeylessAuthMethodBase
-from plugins.module_utils._auth_method_cert import AkeylessAuthMethodCert
+from akeyless_ansible.plugins.module_utils._auth_method_base import AkeylessAuthMethodBase
+from akeyless_ansible.plugins.module_utils._auth_method_cert import AkeylessAuthMethodCert
 
 
 

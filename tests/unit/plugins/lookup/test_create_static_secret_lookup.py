@@ -7,7 +7,8 @@ from akeyless import CreateSecret
 from ansible.plugins.loader import lookup_loader
 
 
-from plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
+
+from akeyless_ansible.plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
 
 
 @pytest.fixture

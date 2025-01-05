@@ -36,10 +36,10 @@ def fixture_loader():
 @pytest.fixture
 def mock_api_client():
     mock_client = mock.Mock()
-    with mock.patch('plugins.module_utils._akeyless_helper.AkeylessHelper.create_api_client', return_value=mock_client):
+    with mock.patch('akeyless_ansible.plugins.module_utils._akeyless_helper.AkeylessHelper.create_api_client', return_value=mock_client):
         yield mock_client
 
 @pytest.fixture
 def mock_create_api_client():
-    with mock.patch('plugins.module_utils._akeyless_helper.AkeylessHelper.create_api_client', autospec=True) as mock_client:
+    with mock.patch('akeyless_ansible.plugins.module_utils._akeyless_helper.AkeylessHelper.create_api_client', autospec=True) as mock_client:
         yield mock_client

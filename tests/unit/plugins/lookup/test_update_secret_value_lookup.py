@@ -2,12 +2,12 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 import pytest
-from akeyless import CreateSecret, UpdateSecretVal
+from akeyless import UpdateSecretVal
 
 from ansible.plugins.loader import lookup_loader
 
 
-from plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
+from akeyless_ansible.plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
 
 
 @pytest.fixture

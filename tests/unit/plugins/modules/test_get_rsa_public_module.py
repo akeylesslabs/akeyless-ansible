@@ -5,7 +5,7 @@ __metaclass__ = type
 import pytest
 from akeyless import ApiException, GetRSAPublicOutput, GetRSAPublic
 
-import plugins.modules.get_rsa_public as get_rsa_public_module
+import akeyless_ansible.plugins.modules.get_rsa_public as get_rsa_public_module
 from tests.unit.conftest import fixture_loader
 from tests.unit.plugins.modules.test_modules_utils import set_module_args, AnsibleExitJson, AnsibleFailJson
 

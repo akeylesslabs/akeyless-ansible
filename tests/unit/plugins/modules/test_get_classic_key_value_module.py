@@ -7,7 +7,7 @@ import akeyless
 import pytest
 from akeyless import ApiException
 
-import plugins.modules.get_classic_key_value as get_classic_key_module
+import akeyless_ansible.plugins.modules.get_classic_key_value as get_classic_key_module
 from tests.unit.conftest import fixture_loader
 from tests.unit.plugins.modules.test_modules_utils import  set_module_args, AnsibleExitJson, AnsibleFailJson
 
@@ -40,7 +40,7 @@ class TestGetClassicKeyValueModule(object):
             get_classic_key_module.main()
 
 
-    @mock.patch('plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
+    @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper, get_ck_value_response):
         opts = dict(
             akeyless_url= 'http://api.akeyless.test',

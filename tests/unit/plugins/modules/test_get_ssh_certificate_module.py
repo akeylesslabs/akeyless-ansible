@@ -5,7 +5,7 @@ __metaclass__ = type
 import pytest
 from akeyless import ApiException, GetSSHCertificateOutput, GetSSHCertificate
 
-import plugins.modules.get_ssh_certificate as get_ssh_certificate_module
+import akeyless_ansible.plugins.modules.get_ssh_certificate as get_ssh_certificate_module
 from tests.unit.conftest import fixture_loader
 from tests.unit.plugins.modules.test_modules_utils import set_module_args, AnsibleExitJson, AnsibleFailJson
 

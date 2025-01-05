@@ -8,7 +8,7 @@ import pytest
 
 from akeyless import AuthOutput
 
-import plugins.modules.login as login_module
+import akeyless_ansible.plugins.modules.login as login_module
 from tests.unit.plugins.modules.test_modules_utils import  set_module_args, AnsibleExitJson, AnsibleFailJson
 
 
@@ -20,7 +20,7 @@ class TestLoginModule(object):
             login_module.main()
 
     def test_ensure_args_passed(self, mock_module_helper):
-        with patch('plugins.modules.login.AkeylessModule.authenticate', return_value=AuthOutput(token="mock_token")):
+        with patch('akeyless_ansible.plugins.modules.login.AkeylessModule.authenticate', return_value=AuthOutput(token="mock_token")):
             set_module_args({
                 'akeyless_url': "https://xxx.com",
             })

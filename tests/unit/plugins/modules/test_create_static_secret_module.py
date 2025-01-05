@@ -7,7 +7,7 @@ import akeyless
 import pytest
 from akeyless import ApiException
 
-import plugins.modules.create_static_secret as create_secret_module
+import akeyless_ansible.plugins.modules.create_static_secret as create_secret_module
 from tests.unit.plugins.modules.test_modules_utils import  set_module_args, AnsibleExitJson, AnsibleFailJson
 
 class TestCreateStaticSecretModule(object):
@@ -45,7 +45,7 @@ class TestCreateStaticSecretModule(object):
             create_secret_module.main()
 
 
-    @mock.patch('plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
+    @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper):
         opts = dict(
             akeyless_url= 'http://api.akeyless.test',

@@ -3,14 +3,14 @@ __metaclass__ = type
 
 
 import pytest
-from akeyless import ListItems, ApiException, ListItemsOutput, ListItemsInPathOutput
+from akeyless import ListItems, ApiException, ListItemsInPathOutput
 from ansible.errors import AnsibleError
 
 from ansible.plugins.loader import lookup_loader
 
 from unittest import mock
 
-from plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
+from akeyless_ansible.plugins.plugin_utils._akeyless_lookup_base import AkeylessLookupBase
 
 
 @pytest.fixture

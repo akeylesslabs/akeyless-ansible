@@ -6,7 +6,7 @@ import pytest
 from akeyless import ApiException, GetSecretValue
 
 from tests.unit.plugins.modules.test_modules_utils import AnsibleFailJson, set_module_args, AnsibleExitJson
-import plugins.modules.get_static_secret_value as get_secret_val_module
+import akeyless_ansible.plugins.modules.get_static_secret_value as get_secret_val_module
 
 @pytest.fixture(params=["get_secret_value_response.json"])
 def get_secret_value_response(request, fixture_loader):

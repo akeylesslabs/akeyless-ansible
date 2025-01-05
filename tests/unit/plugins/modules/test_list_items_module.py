@@ -6,7 +6,7 @@ from unittest import mock
 import pytest
 from akeyless import ApiException, ListItemsInPathOutput, ListItems
 
-import plugins.modules.list_items as list_items_module
+import akeyless_ansible.plugins.modules.list_items as list_items_module
 from tests.unit.conftest import fixture_loader
 from tests.unit.plugins.modules.test_modules_utils import  set_module_args, AnsibleExitJson, AnsibleFailJson
 
@@ -49,7 +49,7 @@ class TestListItemsModule(object):
             list_items_module.main()
 
 
-    @mock.patch('plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
+    @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper, list_response):
         opts = dict(
             akeyless_url= 'http://api.akeyless.test',

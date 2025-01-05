@@ -7,7 +7,7 @@ import pytest
 from akeyless import ApiException, UpdateSecretVal
 
 from tests.unit.plugins.modules.test_modules_utils import AnsibleFailJson, set_module_args, AnsibleExitJson
-import plugins.modules.update_static_secret_value as update_secret_val_module
+import akeyless_ansible.plugins.modules.update_static_secret_value as update_secret_val_module
 
 
 
@@ -48,7 +48,7 @@ class \
             update_secret_val_module.main()
 
 
-    @mock.patch('plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
+    @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper):
         opts = dict(
             akeyless_url= 'http://api.akeyless.test',
