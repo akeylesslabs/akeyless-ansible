@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "akeyless_ansible"
-version = "1.0.0"
+version = "1.0.1"
 description = "Ansible plugins for Akeyless"
 authors = [{name = "Akeyless Security", email = "refael@akeyless.io"}]
 readme = "README.md"
