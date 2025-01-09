@@ -34,7 +34,7 @@ class TestGetPkiCertificateLookup(object):
         get_pki_cert_lookup.authenticate = mock.Mock(return_value=mock.Mock(token="t-123abc"))
 
         with pytest.raises(AnsibleError, match="No setting was provided for required configuration plugin_type: lookup plugin: get_pki_certificate setting: cert_issuer_name"):
-            get_pki_cert_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            get_pki_cert_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_input_output(self, mock_api_client, get_pki_cert_lookup, get_pki_cert_response, base_vars):
@@ -56,7 +56,7 @@ class TestGetPkiCertificateLookup(object):
         )
         response = get_pki_cert_lookup.run(
             terms=[],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

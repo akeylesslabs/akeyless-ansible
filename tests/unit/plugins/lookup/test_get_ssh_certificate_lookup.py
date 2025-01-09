@@ -32,7 +32,7 @@ class TestGetSShCertificateLookup(object):
         get_rsa_public_lookup.authenticate = mock.Mock(return_value=mock.Mock(token="t-123abc"))
 
         with pytest.raises(AnsibleError, match="lookup plugin: get_ssh_certificate setting: cert_username"):
-            get_rsa_public_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            get_rsa_public_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
     def test_input_output(self, mock_api_client, get_rsa_public_lookup, get_ssh_certificate_response, base_vars):
         mock_api_client.get_ssh_certificate.return_value = GetSSHCertificateOutput(**get_ssh_certificate_response.copy())
@@ -47,7 +47,7 @@ class TestGetSShCertificateLookup(object):
         )
         response = get_rsa_public_lookup.run(
             terms=[],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

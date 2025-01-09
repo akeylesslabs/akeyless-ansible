@@ -23,7 +23,7 @@ class TestGetRsaPublic(object):
 
     def test_raise_exception_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             access_id='a-123asdasd',
             access_type='aws_iam',
             name="xxx",
@@ -38,7 +38,7 @@ class TestGetRsaPublic(object):
 
     def test_input_output(self, mock_api_client, mock_module_helper, get_rsa_public_response):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             name='test-rsa-public',
             token="t-123",
             uid_token="uid-321",

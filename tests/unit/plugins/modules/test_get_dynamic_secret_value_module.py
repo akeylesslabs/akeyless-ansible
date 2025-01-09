@@ -24,7 +24,7 @@ class TestGetDynamicSecretValue(object):
 
     def test_raise_exception_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             access_id='a-123asdasd',
             access_type='aws_iam',
             name="xxx",
@@ -40,7 +40,7 @@ class TestGetDynamicSecretValue(object):
 
     def test_input_output(self, mock_api_client, mock_module_helper, get_ds_value_response):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             token="p-1233333",
             name='test-secret',
             host='remotehost',

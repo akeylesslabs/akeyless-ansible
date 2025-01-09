@@ -29,7 +29,7 @@ class TestGetRSAPublicLookup(object):
 
     def test_validation_error(self, get_rsa_public_lookup, base_vars):
         with pytest.raises(AnsibleError, match="secret name term is missing"):
-            get_rsa_public_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            get_rsa_public_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
     def test_input_output(self, mock_api_client, get_rsa_public_lookup, get_rsa_public_response, base_vars):
         mock_api_client.get_rsa_public.return_value = GetRSAPublicOutput(**get_rsa_public_response.copy())
@@ -42,7 +42,7 @@ class TestGetRSAPublicLookup(object):
         )
         response = get_rsa_public_lookup.run(
             terms=[key_name],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

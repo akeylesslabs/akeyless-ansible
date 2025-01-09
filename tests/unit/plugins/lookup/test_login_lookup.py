@@ -25,7 +25,7 @@ class TestLoginLookup(object):
         mock_response.token = "mock_token"
         login_lookup.authenticate = mock.Mock(return_value=mock_response)
 
-        result = login_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+        result = login_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
         assert len(result) == 1
         assert result[0].token == "mock_token"
@@ -36,5 +36,5 @@ class TestLoginLookup(object):
         login_lookup.authenticate = mock.Mock(side_effect=Exception("unknown error"))
 
         with pytest.raises(AnsibleError, match="Unknown exception trying to run akeyless auth: unknown error"):
-            login_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            login_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 

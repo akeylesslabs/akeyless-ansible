@@ -37,7 +37,7 @@ DOCUMENTATION = """
 EXAMPLES = r"""
 - name: Generate SSH Certificate using SSH Cert Issuer "my cert issuer" singed with username "ubuntu"
   community.akeyless.get_ssh_certificate:
-    akeyless_url: https://akl-url:8081
+    akeyless_api_url: https://akl-url:8081
     cert_issuer_name: "my cert issuer"
     cert_username: "ubuntu"
     public_key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABA"

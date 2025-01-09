@@ -42,7 +42,7 @@ class TestCreateStaticSecretLookup(object):
 
         create_secret_lookup.run(
             terms=[secret_name],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

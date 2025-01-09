@@ -22,7 +22,7 @@ class TestLoginModule(object):
     def test_ensure_args_passed(self, mock_module_helper):
         with patch('akeyless_ansible.plugins.modules.login.AkeylessModule.authenticate', return_value=AuthOutput(token="mock_token")):
             set_module_args({
-                'akeyless_url': "https://xxx.com",
+                'akeyless_api_url': "https://xxx.com",
             })
 
             with pytest.raises(AnsibleExitJson) as e:

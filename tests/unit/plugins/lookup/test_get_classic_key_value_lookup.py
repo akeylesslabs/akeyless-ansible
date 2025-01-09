@@ -35,7 +35,7 @@ class TestGetClassicKeyValueLookup(object):
         mock_api_client.export_classic_key.side_effect = ApiException(reason="Failed to do it", status=500)
 
         with pytest.raises(AnsibleError, match="API Exception when calling V2Api->export_classic_key: 500 - Failed to do it"):
-            get_classic_key_lookup.run(terms=["a great ck"], akeyless_url=base_vars['akeyless_url'])
+            get_classic_key_lookup.run(terms=["a great ck"], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_get_classic_key_value_ok(self, mock_api_client, get_classic_key_lookup, get_ck_value_response, base_vars):
@@ -52,7 +52,7 @@ class TestGetClassicKeyValueLookup(object):
 
         response = get_classic_key_lookup.run(
             terms=[secret_name],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

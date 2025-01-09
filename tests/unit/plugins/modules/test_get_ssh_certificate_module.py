@@ -23,7 +23,7 @@ class TestGetSshCertificateModule(object):
 
     def test_raise_exception_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             cert_issuer_name="fake-pki-cert",
             cert_username="xxx",
             public_key_data="sdaa",
@@ -39,7 +39,7 @@ class TestGetSshCertificateModule(object):
     def test_input_output(self, mock_api_client, mock_module_helper, get_ssh_certificate_response):
         opts = dict(
             token="t-123",
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             cert_issuer_name="fake-pki-cert",
             cert_username="xxx",
             public_key_data="sdaa",

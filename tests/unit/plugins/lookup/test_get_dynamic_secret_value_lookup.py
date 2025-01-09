@@ -34,7 +34,7 @@ class TestGetDynamicSecretValueLookup(object):
         mock_api_client.get_dynamic_secret_value.side_effect = Exception("Somthing is not working")
 
         with pytest.raises(Exception, match="Unknown exception trying to run get_dynamic_secret_value"):
-            get_ds_value_lookup.run(terms=["a great ds"], akeyless_url=base_vars['akeyless_url'])
+            get_ds_value_lookup.run(terms=["a great ds"], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_input_output(self, mock_api_client, get_ds_value_lookup, get_ds_value_response, base_vars):
@@ -50,7 +50,7 @@ class TestGetDynamicSecretValueLookup(object):
         ds_name = "fake-mysql-ds"
         response = get_ds_value_lookup.run(
             terms=[ds_name],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

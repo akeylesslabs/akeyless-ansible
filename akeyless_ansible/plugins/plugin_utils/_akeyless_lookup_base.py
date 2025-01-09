@@ -22,7 +22,7 @@ class AkeylessLookupBase(AkeylessPlugin, LookupBase):
 
         # we're setting the dependencies here since in the __ini__ the options are not set yet
         self.authenticator = AkeylessAuthenticator(self._options)
-        self.api_client = AkeylessHelper.create_api_client(self.get_option('akeyless_url'))
+        self.api_client = AkeylessHelper.create_api_client(self.get_option('akeyless_api_url'))
 
     def authenticate(self):
         self.authenticator.validate()

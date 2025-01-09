@@ -40,7 +40,7 @@ Example `login` with k8s using a lookup plugin:
 ```yaml
 - name: Login K8S
   set_fact:
-    login_res: "{{ lookup('login', akeyless_url=akeyless_url,
+    login_res: "{{ lookup('login', akeyless_api_url=akeyless_api_url,
       access_type='k8s', access_id=access_id, k8s_service_account_token=k8s_service_account_token, k8s_auth_config_name=k8s_auth_config_name) }}"
 
 - name: Display the token
@@ -53,7 +53,7 @@ Example `login` with saml:
 ```yaml
 - name: Login saml
   login:
-    akeyless_url: '{{ akeyless_url }}'
+    akeyless_api_url: '{{ akeyless_api_url }}'
     access_type: 'saml'
     access_id: '{{ access_id }}'
   register: login_res
@@ -80,7 +80,7 @@ Here is an example of how to use the `get_static_secret_value` module in your pl
   tasks:
     - name: Get temp token using aws_iam auth method
       login:
-        akeyless_url: '{{ akeyless_url }}'
+        akeyless_api_url: '{{ akeyless_api_url }}'
         access_type: 'aws_iam'
         access_id: '{{ access_id }}'
         cloud_id: '{{ cloud_id }}'
@@ -88,7 +88,7 @@ Here is an example of how to use the `get_static_secret_value` module in your pl
       
     - name: Get item secret value by name
       get_static_secret_value:
-        akeyless_url: '{{ akeyless_url }}'
+        akeyless_api_url: '{{ akeyless_api_url }}'
         names: ['MySecret']
         token: '{{ auth_res.token }}'
       register: response

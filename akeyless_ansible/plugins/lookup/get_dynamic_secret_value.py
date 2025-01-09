@@ -34,7 +34,7 @@ DOCUMENTATION = r'''
 EXAMPLES = r'''
 - name: Get MySQL dynamic secret value
   set_fact:
-    response: "{{ lookup('get_dynamic_secret_value', 'MyMySqlDynamicSecret', akeyless_url='https://my.gw:8000/api/v2', token='t-1233asdsad',
+    response: "{{ lookup('get_dynamic_secret_value', 'MyMySqlDynamicSecret', akeyless_api_url='https://my.gw:8000/api/v2', token='t-1233asdsad',
         target='MyMySqlTarget', args=['common_name=bar']) }}"
 
 - name: Display the results

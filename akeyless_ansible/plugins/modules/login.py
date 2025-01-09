@@ -19,7 +19,7 @@ DOCUMENTATION = """
 EXAMPLES = r'''
 - name: Login with API Key
   login:
-    akeyless_url: https://my.gw:8000/api/v2
+    akeyless_api_url: https://my.gw:8000/api/v2
     access_type: api_key
     access_id: {{ access_id }} 
     access_key: {{ access_key }} 
@@ -32,7 +32,7 @@ EXAMPLES = r'''
 
 - name: Login with K8S
   login:
-    akeyless_url: https://my.gw:8000/api/v2
+    akeyless_api_url: https://my.gw:8000/api/v2
     access_type: k8s
     k8s_service_account_token: {{ k8s_service_account_token }} 
     k8s_auth_config_name: {{ k8s_auth_config_name }} 

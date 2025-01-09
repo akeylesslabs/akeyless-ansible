@@ -34,14 +34,14 @@ class TestGetSecretValueLookup(object):
         mock_api_client.get_secret_value.side_effect = ApiException("Somthing is not working")
 
         with pytest.raises(AnsibleError, match="API Exception when calling V2Api->get_secret_value: Somthing is not working"):
-            get_secret_lookup.run(terms=["a great secret"], akeyless_url=base_vars['akeyless_url'])
+            get_secret_lookup.run(terms=["a great secret"], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_validation_error(self, mock_api_client, get_secret_lookup, base_vars):
         get_secret_lookup.authenticate = mock.Mock(return_value=mock.Mock(token="t-123abc"))
 
         with pytest.raises(AnsibleError, match=re.escape("secret name(s) are missing")):
-            get_secret_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            get_secret_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_input_putput(self, mock_api_client, get_secret_lookup, get_secret_value_response, base_vars):
@@ -56,7 +56,7 @@ class TestGetSecretValueLookup(object):
 
         res = get_secret_lookup.run(
             terms=secret_names,
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

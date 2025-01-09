@@ -27,7 +27,7 @@ DOCUMENTATION = """
 EXAMPLES = r'''
 - name: Get item secret value by name
   get_static_secret_value:
-    akeyless_url: '{{ akeyless_url }}'
+    akeyless_api_url: '{{ akeyless_api_url }}'
     names: ['MySecret']
     token: '{{ auth_res.token }}'
   register: response
@@ -39,7 +39,7 @@ EXAMPLES = r'''
       
 - name: Get multiple secrets values with token with aws_iam auth
   get_static_secret_value:
-    akeyless_url: '{{ akeyless_url }}'
+    akeyless_api_url: '{{ akeyless_api_url }}'
     access_type: 'aws_iam'
     access_id: '{{ access_id }}'
     cloud_id: '{{ cloud_id }}'

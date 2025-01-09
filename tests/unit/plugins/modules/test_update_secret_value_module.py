@@ -22,7 +22,7 @@ class \
     def test_unsupported_params(self, mock_module_helper):
         with pytest.raises(AnsibleFailJson) as e:
             set_module_args(dict(
-                akeyless_url= 'http://api.akeyless.test',
+                akeyless_api_url= 'http://api.akeyless.test',
                 token='t-123asdasd',
                 name= "ss",
                 someparam="foobar",
@@ -33,7 +33,7 @@ class \
 
     def test_raise_api_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             access_id='a-123asdasd',
             access_type='gcp',
             cloud_id='c-123asdas',
@@ -51,7 +51,7 @@ class \
     @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             name="ss",
             token="t-123",
             value="a value",

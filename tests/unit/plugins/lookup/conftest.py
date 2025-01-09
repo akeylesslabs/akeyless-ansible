@@ -7,6 +7,6 @@ import pytest
 @pytest.fixture
 def base_vars():
     return {
-        'akeyless_url': 'http://myvault',
+        'akeyless_api_url': 'http://myvault',
         'access_type': 'api_key',
     }

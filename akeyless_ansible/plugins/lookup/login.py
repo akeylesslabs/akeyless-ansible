@@ -15,7 +15,7 @@ DOCUMENTATION = r'''
 EXAMPLES = r'''
 - name: Login with API Key
   set_fact:
-    login_res: "{{ lookup('login',  akeyless_url='https://api.akeyless.io', access_type='api_key', access_id='p-12345667', access_key='the-access-key') }}"
+    login_res: "{{ lookup('login',  akeyless_api_url='https://api.akeyless.io', access_type='api_key', access_id='p-12345667', access_key='the-access-key') }}"
 
 - name: Display the temp token
   debug:
@@ -24,7 +24,7 @@ EXAMPLES = r'''
 
 - name: Login with k8s
   set_fact:
-    login_res: "{{ lookup('login',  akeyless_url='https://my.gw:8000/api/v2', access_type='k8s', access_id='p-12345667',
+    login_res: "{{ lookup('login',  akeyless_api_url='https://my.gw:8000/api/v2', access_type='k8s', access_id='p-12345667',
         k8s_service_account_token='service-account-token', k8s_auth_config_name='auth-conf-name') }}"
 
 - name: Display the temp token

@@ -34,7 +34,7 @@ class TestRotatedSecretValueLookup(object):
         mock_api_client.get_rotated_secret_value.side_effect = ApiException("Somthing is not working")
 
         with pytest.raises(AnsibleError, match="API Exception when calling V2Api->get_rotated_secret_value: Somthing is not working"):
-            get_rs_value_lookup.run(terms=["a great rs"], akeyless_url=base_vars['akeyless_url'])
+            get_rs_value_lookup.run(terms=["a great rs"], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_input_output(self, mock_api_client, get_rs_value_lookup, get_rs_value_response, base_vars):
@@ -48,7 +48,7 @@ class TestRotatedSecretValueLookup(object):
         )
         response = get_rs_value_lookup.run(
             terms=[rs_name],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             **opts
         )
 

@@ -24,7 +24,7 @@ class TestGetRotatedSecretValueModule(object):
 
     def test_raise_exception_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             access_id='a-123asdasd',
             access_type='aws_iam',
             name="xxx",
@@ -39,7 +39,7 @@ class TestGetRotatedSecretValueModule(object):
 
     def test_input_output(self, mock_api_client, mock_module_helper, get_rotated_secret_value_response):
         opts = dict(
-            akeyless_url='http://api.akeyless.test',
+            akeyless_api_url='http://api.akeyless.test',
             token="p-1233333",
             host="asdsa:22",
             version=3,

@@ -9,13 +9,13 @@ from akeyless_ansible.plugins.module_utils._authenticator import AkeylessAuthent
 
 class AkeylessModule(AnsibleModule):
     ARGSPEC = dict(
-        akeyless_url=dict(type='str', required=True),
+        akeyless_api_url=dict(type='str', required=True),
     )
 
     def __init__(self, *args, **kwargs):
         super(AkeylessModule, self).__init__(*args, **kwargs)
         self.authenticator: AkeylessAuthenticator = AkeylessAuthenticator(self.params)
-        self.api_client: akeyless.V2Api = AkeylessHelper.create_api_client(self.params.get('akeyless_url'))
+        self.api_client: akeyless.V2Api = AkeylessHelper.create_api_client(self.params.get('akeyless_api_url'))
 
 
     def authenticate(self):

@@ -26,7 +26,7 @@ DOCUMENTATION = r'''
 EXAMPLES = r'''
 - name: Get item secret value by name
   set_fact:
-    response: "{{ lookup('get_static_secret_value', 'MySecret', akeyless_url='https://api.akeyless.io', access_type='api_key',
+    response: "{{ lookup('get_static_secret_value', 'MySecret', akeyless_api_url='https://api.akeyless.io', access_type='api_key',
         access_id='p-12345667', access_key='the-access-key') }}"
 
 - name: Display the results
@@ -36,7 +36,7 @@ EXAMPLES = r'''
 
 - name: Get multiple secrets values with token
   set_fact:
-    response: "{{ lookup('get_static_secret_value', 'MySecret1', 'MySecret2', akeyless_url='https://api.akeyless.io',
+    response: "{{ lookup('get_static_secret_value', 'MySecret1', 'MySecret2', akeyless_api_url='https://api.akeyless.io',
      token='t-123456abcdefg') }}"
 
 - name: Display the results

@@ -39,7 +39,7 @@ class TestListLookup(object):
         mock_api_client.list_items.side_effect = ApiException(status=400, reason="Somthing is not working")
 
         with pytest.raises(AnsibleError, match="Somthing is not working"):
-            list_lookup.run(terms=[], akeyless_url=base_vars['akeyless_url'])
+            list_lookup.run(terms=[], akeyless_api_url=base_vars['akeyless_api_url'])
 
 
     def test_list_ok(self, mock_create_api_client, list_lookup, base_vars, list_response):
@@ -58,7 +58,7 @@ class TestListLookup(object):
 
         response = list_lookup.run(
             terms=[],
-            akeyless_url=base_vars['akeyless_url'],
+            akeyless_api_url=base_vars['akeyless_api_url'],
             types=["STATIC_SECRET", "SSH_CERT_ISSUER"],
             **opts
         )

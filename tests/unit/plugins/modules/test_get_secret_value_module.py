@@ -23,7 +23,7 @@ class TestGetSecretValueModule(object):
 
     def test_raise_api_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             token="t-123",
             names=["a", "b", "c"],
         )
@@ -37,7 +37,7 @@ class TestGetSecretValueModule(object):
 
     def test_input_output(self, mock_api_client, mock_module_helper, get_secret_value_response):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             names=["secret-name"],
             version=-2,
             token="t-123",

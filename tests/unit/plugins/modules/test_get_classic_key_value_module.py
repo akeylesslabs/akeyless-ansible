@@ -26,7 +26,7 @@ class TestGetClassicKeyValueModule(object):
 
     def test_raise_exception_error(self, mock_api_client, mock_module_helper):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             access_id='a-123asdasd',
             access_type='aws_iam',
             name="xxx",
@@ -43,7 +43,7 @@ class TestGetClassicKeyValueModule(object):
     @mock.patch('akeyless_ansible.plugins.module_utils._akeyless_module.AkeylessModule.authenticate')
     def test_input_output(self, mock_authenticate, mock_api_client, mock_module_helper, get_ck_value_response):
         opts = dict(
-            akeyless_url= 'http://api.akeyless.test',
+            akeyless_api_url= 'http://api.akeyless.test',
             access_id='p-531',
             access_type='k8s',
             k8s_service_account_token='my-great-sa',
