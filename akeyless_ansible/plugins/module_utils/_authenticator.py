@@ -47,7 +47,7 @@ class AkeylessAuthenticator:
         oci_auth_type=dict(type='str', default=None, choices=['instance', 'apikey', 'resource']),
         oci_group_ocid=dict(type='list', elements='str', default=None),
         uid_token=dict(type='str', default=None),
-        gateway_url=dict(type='str', default=None),
+        akeyless_gateway_url=dict(type='str', default=None),
         token=dict(type='str', default=None),
     )
 

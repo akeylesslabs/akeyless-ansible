@@ -21,7 +21,7 @@ class AkeylessAuthMethodOidc(AkeylessAuthMethodBase):
             access_type=self.NAME,
             use_remote_browser=self.options.get('use_remote_browser'),
             jwt=self.options.get('jwt'),
-            gateway_url=self.options.get('gateway_url'),
+            gateway_url=self.options.get('akeyless_gateway_url'),
         )
 
         return api.auth(body)

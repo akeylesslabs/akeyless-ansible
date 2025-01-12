@@ -22,7 +22,7 @@ class AkeylessAuthMethodK8s(AkeylessAuthMethodBase):
                 access_type=self.NAME,
                 k8s_service_account_token=self.options.get('k8s_service_account_token'),
                 k8s_auth_config_name=self.options.get('k8s_auth_config_name'),
-                gateway_url=self.options.get('gateway_url'),
+                gateway_url=self.options.get('akeyless_gateway_url'),
             )
 
             return api.auth(body)

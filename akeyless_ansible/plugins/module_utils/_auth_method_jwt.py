@@ -20,7 +20,7 @@ class AkeylessAuthMethodJwt(AkeylessAuthMethodBase):
             access_id=self.options.get('access_id'),
             access_type=self.NAME,
             jwt=self.options.get('jwt'),
-            gateway_url=self.options.get('gateway_url'),
+            gateway_url=self.options.get('akeyless_gateway_url'),
         )
 
         return api.auth(body)

@@ -90,7 +90,7 @@ Here is an example of how to use the `get_static_secret_value` module in your pl
       get_static_secret_value:
         akeyless_api_url: '{{ akeyless_api_url }}'
         names: ['MySecret']
-        token: '{{ auth_res.token }}'
+        token: '{{ auth_res.data.token }}'
       register: response
 
     - name: Display the results

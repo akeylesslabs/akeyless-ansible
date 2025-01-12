@@ -83,7 +83,7 @@ class ModuleDocFragment(object):
       uid_token:
         description: The universal_identity token (relevant only for access-type=universal_identity).
         type: str
-      gateway_url:
+      akeyless_gateway_url:
         description: Gateway URL relevant only for access-type=k8s/jwt/saml/oidc.
         type: str
     '''
