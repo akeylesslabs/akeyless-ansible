@@ -1,7 +1,5 @@
 # Ansible Plugin
 
-## Introduction
-
 Akeyless Ansible is a collection of Ansible modules and lookup plugins for interacting with Akeyless.
 It allows you to securely manage secrets and access them within your Ansible playbooks.
 
@@ -50,7 +48,6 @@ export ANSIBLE_DOC_FRAGMENT_PLUGINS=${AKEYLESS_ANSIBLE_REPO_PATH}/akeyless_ansib
 # Run the playbook
 ansible-playbook playbook.yaml
 ```
-
 
 
 This plugin supports the following Authentication Methods:
