@@ -27,6 +27,32 @@ This approach installs the plugin as a Python package from the Python Package In
 pip install akeyless-ansible
 ```
 
+## Configuration
+### Add the Python module to PYTHONPATH
+By default, ansible looks for it's dependencies in `/usr/lib/pythonX.X/site-packages/ansible`, however since we are using
+a custom source code our files are not located there, and we need to add the repository path to the `PYTHONPATH` environment variable before running the playbook: 
+`export PYTHONPATH=${AKEYLESS_ANSIBLE_REPO_PATH}:$PYTHONPATH`
+
+### Configure modules paths
+In order to run a playbook with akeyless modules or lookup plugins, you'll need to tell ansible where it can find the source files.
+In this repository there is a file called `ansible.cfg` which contains the paths relative to this repository location, if you run the playbook
+from this repository location you don't need to do anything, ansible will load the `ansible.cfg` file automatically and uses the correct paths,
+however if you want to run the playbook from other location you'll need to configure the correct paths. You can do it either by using 
+environment variables or by using config files.
+For more information about how to configure ansible, please refer to the [official ansible documentation](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#cfg).
+For example, using environment variables:
+```sh
+export ANSIBLE_LIBRARY=${AKEYLESS_ANSIBLE_REPO_PATH}/akeyless_ansible/plugins/modules
+export ANSIBLE_LOOKUP_PLUGINS=${AKEYLESS_ANSIBLE_REPO_PATH}/akeyless_ansible/plugins/lookup
+export ANSIBLE_MODULE_UTILS=${AKEYLESS_ANSIBLE_REPO_PATH}/akeyless_ansible/plugins/module_utils
+export ANSIBLE_DOC_FRAGMENT_PLUGINS=${AKEYLESS_ANSIBLE_REPO_PATH}/akeyless_ansible/plugins/doc_fragments
+
+# Run the playbook
+ansible-playbook playbook.yaml
+```
+
+
+
 This plugin supports the following Authentication Methods:
 
 - [Api Key](https://docs.akeyless.io/docs/api-key)
